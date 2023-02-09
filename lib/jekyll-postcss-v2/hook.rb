@@ -5,7 +5,7 @@ require "pathname"
 module PostCssV2
   class Engine
     def initialize(source)
-      @script = Pathname.new(source + "/node_modules/.bin/postcss")
+      @script = Pathname.new(`which postcss`.strip)
       unless @script.exist?
         Jekyll.logger.error "PostCSS v2:",
                             "PostCSS not found.
